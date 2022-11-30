@@ -24,7 +24,8 @@ class CrimeListFragment : Fragment() {
 
     private lateinit var crimeRecyclerView:
             RecyclerView
-    private var adapter: CrimeAdapter? = null
+    private var adapter: CrimeAdapter? =
+        CrimeAdapter(emptyList())
 
     private val crimeListViewModel:
             CrimeListViewModel by lazy {
@@ -55,13 +56,16 @@ class CrimeListFragment : Fragment() {
         var crimeRecyclerView = view.findViewById(R.id.crime_recycler_view) as RecyclerView
         crimeRecyclerView.layoutManager =
             LinearLayoutManager(context)
+        crimeRecyclerView.adapter = adapter
         //!!!
-        updateUI()
+        //updateUI()
         return view
     }
 
-    private fun updateUI() {
-        val crimes = crimeListViewModel.crimes
+
+
+    private fun updateUI(crimes: List<Crime>){
+
         adapter = CrimeAdapter(crimes)
         crimeRecyclerView.adapter = adapter
     }
@@ -110,6 +114,7 @@ class CrimeListFragment : Fragment() {
 
 
             val view = inflater //.inflate(R.layout.list_item_crime, parent, false)
+
             return CrimeHolder(view as View)
         }
 

@@ -1,9 +1,13 @@
 package com.bignerdranch.android.zad2_chernshov
 
-import java.util.UUID
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.*
 
-class Crime (var id: UUID = UUID.randomUUID()){
-    var title: String = ""
-    var date: Int = 0
-    var isSoul: Boolean = false
-}
+@Entity
+data class Crime(@PrimaryKey val id: UUID =
+                     UUID.randomUUID(),
+                 var title: String = "",
+                 var date: Date = Date(),
+                 var isSolved: Boolean = false)
+
